@@ -1,7 +1,7 @@
 FROM dunglas/frankenphp:php8.2-bookworm
 
 RUN install-php-extensions \
-    ctype curl dom fileinfo filter hash mbstring openssl pcre pdo \
+    ctype curl dom fileinfo filter hash mbstring openssl pcre pdo pdo_mysql \
     session tokenizer xml calendar gd zip imap opcache intl
 
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
