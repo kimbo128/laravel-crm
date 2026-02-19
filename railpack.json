@@ -1,9 +1,5 @@
 {
-  "steps": {
-    "extensions": {
-      "cmds": [
-        "install-php-extensions ctype curl dom fileinfo filter hash mbstring openssl pcre pdo session tokenizer xml calendar gd zip imap"
-      ]
-    }
+  "php": {
+    "extensions": ["ctype", "curl", "dom", "fileinfo", "filter", "hash", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml", "calendar", "gd", "zip", "imap"]
   }
 }
