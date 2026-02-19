@@ -23,4 +23,9 @@ RUN npm install && npm run build
 RUN mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache \
     && chmod -R a+rw storage
 
-CMD ["/start-container.sh"]
+# Caddyfile erstellen
+RUN printf '{\n    frankenphp\n}\n\n:80 {\n    root * /app/public\n    php_server\n}\n' > /etc/caddy/Caddyfile
+
+EXPOSE 80
+
+CMD ["frankenphp", "run", "--config", "/etc/caddy/Caddyfile"]
