@@ -1,12 +1,16 @@
 FROM dunglas/frankenphp:php8.2-bookworm
 
+# PHP Extensions
 RUN install-php-extensions \
     ctype curl dom fileinfo filter hash mbstring openssl pcre pdo \
     session tokenizer xml calendar gd zip imap opcache intl
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs git unzip \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y git unzip && rm -rf /var/lib/apt/lists/*
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
