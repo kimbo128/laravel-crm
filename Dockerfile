@@ -33,25 +33,3 @@ exec frankenphp run --config /etc/caddy/Caddyfile\n' > /start.sh && chmod +x /st
 EXPOSE 8080
 
 CMD ["/start.sh"]
-```
-
----
-
-**Railway Variables (Raw Editor):**
-```
-APP_NAME=Laravel CRM
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://laravel-crm-production-6746.up.railway.app
-APP_KEY=base64:TR+qDMDHKJSVgxoLagRQH9v0pXTeCq8CZT3ro4GQHOE=
-LOG_CHANNEL=stderr
-SESSION_DRIVER=cookie
-CACHE_DRIVER=array
-VIEW_COMPILED_PATH=/app/storage/framework/views
-PORT=8080
-DB_CONNECTION=mysql
-DB_HOST=${{MySQL.MYSQLHOST}}
-DB_PORT=${{MySQL.MYSQLPORT}}
-DB_DATABASE=${{MySQL.MYSQL_DATABASE}}
-DB_USERNAME=${{MySQL.MYSQLUSER}}
-DB_PASSWORD=${{MySQL.MYSQL_ROOT_PASSWORD}}
