@@ -27,6 +27,8 @@ mkdir -p /app/bootstrap/cache\n\
 chmod -R 777 /app/storage /app/bootstrap/cache\n\
 php /app/artisan config:clear\n\
 php /app/artisan view:clear\n\
+php /app/artisan migrate --force\n\
+php /app/artisan db:seed --force\n\
 exec frankenphp run --config /etc/caddy/Caddyfile\n' > /start.sh && chmod +x /start.sh
 
 EXPOSE 8080
