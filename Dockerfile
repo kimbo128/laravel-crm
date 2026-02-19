@@ -20,7 +20,16 @@ RUN npm install && npm run build
 
 RUN printf '{\n    frankenphp\n}\n\n:{$PORT:80} {\n    root * /app/public\n    encode zstd gzip\n    php_server\n    file_server\n}\n' > /etc/caddy/Caddyfile
 
-RUN printf '#!/bin/sh\nmkdir -p /app/storage/framework/{sessions,views,cache,testing}\nmkdir -p /app/storage/logs\nmkdir -p /app/bootstrap/cache\nchmod -R 777 /app/storage /app/bootstrap/cache\nphp /app/artisan config:cache\nphp /app/artisan view:cache\nphp /app/artisan migrate --force\nexec frankenphp run --config /etc/caddy/Caddyfile\n' > /start.sh && chmod +x /start.sh
+RUN printf '#!/bin/sh\n\
+mkdir -p /app/storage/framework/{sessions,views,cache,testing}\n\
+mkdir -p /app/storage/logs\n\
+mkdir -p /app/bootstrap/cache\n\
+chmod -R 777 /app/storage /app/bootstrap/cache\n\
+php /app/artisan cache:clear\n\
+php /app/artisan config:clear\n\
+php /app/artisan config:cache\n\
+php /app/artisan migrate --force\n\
+exec frankenphp run --config /etc/caddy/Caddyfile\n' > /start.sh && chmod +x /start.sh
 
 EXPOSE 8080
 
