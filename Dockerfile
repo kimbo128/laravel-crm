@@ -23,8 +23,10 @@ RUN printf '{\n    frankenphp\n}\n\n:{$PORT:80} {\n    root * /app/public\n    e
 RUN printf '#!/bin/sh\n\
 mkdir -p /app/storage/framework/{sessions,views,cache,testing}\n\
 mkdir -p /app/storage/logs\n\
+mkdir -p /app/storage/app\n\
 mkdir -p /app/bootstrap/cache\n\
 chmod -R 777 /app/storage /app/bootstrap/cache\n\
+touch /app/storage/app/installed\n\
 php /app/artisan config:clear\n\
 php /app/artisan view:clear\n\
 php /app/artisan migrate --force\n\
