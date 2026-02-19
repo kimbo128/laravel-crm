@@ -25,9 +25,8 @@ mkdir -p /app/storage/framework/{sessions,views,cache,testing}\n\
 mkdir -p /app/storage/logs\n\
 mkdir -p /app/bootstrap/cache\n\
 chmod -R 777 /app/storage /app/bootstrap/cache\n\
-php /app/artisan cache:clear\n\
 php /app/artisan config:clear\n\
-php /app/artisan config:cache\n\
+php /app/artisan view:clear\n\
 php /app/artisan migrate --force\n\
 exec frankenphp run --config /etc/caddy/Caddyfile\n' > /start.sh && chmod +x /start.sh
 
