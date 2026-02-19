@@ -26,11 +26,11 @@ mkdir -p /app/storage/logs\n\
 mkdir -p /app/storage/app\n\
 mkdir -p /app/bootstrap/cache\n\
 chmod -R 777 /app/storage /app/bootstrap/cache\n\
-touch /app/storage/app/installed\n\
 php /app/artisan config:clear\n\
 php /app/artisan view:clear\n\
-php /app/artisan migrate --force\n\
-php /app/artisan db:seed --force\n\
+if [ ! -f /app/storage/installed ]; then\n\
+  printf "Krayin CRM\n${APP_URL}\n\n\nmysql\n${DB_HOST}\n${DB_PORT}\n${DB_DATABASE}\n\n${DB_USERNAME}\n${DB_PASSWORD}\nadmin\nadmin@admin.com\nadmin123\n" | php /app/artisan krayin-crm:install\n\
+fi\n\
 exec frankenphp run --config /etc/caddy/Caddyfile\n' > /start.sh && chmod +x /start.sh
 
 EXPOSE 8080
